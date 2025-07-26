@@ -1,0 +1,488 @@
+/*
+ * Stylesheet for the Magic Jerry personal introduction site.
+ *
+ * This file defines a responsive layout based around a flexible
+ * color palette inspired by the original brand‑warfare microsite. The
+ * palette uses indigo tones for primary accents, slate for body text
+ * and backgrounds, and lighter tints for subtle section delineation.
+ * Throughout the page you’ll find clear typography, generous
+ * white‑space and subtle animations that bring the timeline and
+ * navigation elements to life. Media queries ensure that the layout
+ * gracefully adapts to smaller screens while maintaining visual
+ * hierarchy. Variables are defined at the root level so that future
+ * adjustments can be made in a single place.
+ */
+
+:root {
+  --color-bg: #f8fafc;             /* slate‑50 */
+  --color-surface: #ffffff;        /* pure white for cards */
+  --color-primary: #4f46e5;        /* indigo‑600 */
+  --color-primary-dark: #312e81;   /* indigo‑900 */
+  --color-accent: #c7d2fe;         /* indigo‑200 */
+  --color-text: #334155;           /* slate‑700 */
+  --color-muted: #64748b;          /* slate‑500 */
+  --max-width: 1100px;
+  --transition-fast: 0.3s;
+}
+
+/* Reset / base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-primary-dark);
+}
+h2 {
+  margin-bottom: 0.6em;
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.4em;
+}
+p {
+  margin-bottom: 1em;
+  color: var(--color-text);
+}
+
+/* Navigation */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(255,255,255,0.95);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: background-color var(--transition-fast);
+}
+.navbar.scrolled {
+  background-color: var(--color-surface);
+}
+.logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.nav-links li a {
+  font-weight: 500;
+  color: var(--color-text);
+  position: relative;
+  padding: 0.25rem 0;
+}
+.nav-links li a.active,
+.nav-links li a:hover {
+  color: var(--color-primary);
+}
+.nav-links li a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary);
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  background-image: url('../images/network.png');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(49, 46, 129, 0.65);
+  z-index: 0;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 1.5rem;
+}
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5em;
+  color: #fff;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  color: #e0e7ff;
+}
+/* Book information card inside the hero section */
+.hero-content .hero-book {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  background: rgba(49, 46, 129, 0.5);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.hero-book .book-image {
+  flex: 1 1 280px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.hero-book .book-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.hero-book .book-text {
+  flex: 2 1 380px;
+  color: #e0e7ff;
+  padding-left: 1.5rem;
+}
+.hero-book .book-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+.hero-book .book-tagline,
+.hero-book .book-subtagline {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+  color: #c7d2fe;
+}
+.hero-book .book-tagline {
+  font-weight: 600;
+}
+.hero-book .author-title,
+.hero-book .preface-title {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+.hero-book .author-text,
+.hero-book .preface-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  color: #e5e7eb;
+}
+
+@media (max-width: 768px) {
+  .hero-book .book-text {
+    padding-left: 0;
+  }
+}
+.scroll-down-gif {
+  margin-top: 2rem;
+  width: 40px;
+  height: auto;
+  opacity: 0.8;
+  animation: float 2s infinite ease-in-out;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+main {
+  margin-top: 80px; /* space for fixed navbar */
+}
+
+section {
+  padding: 4rem 1.5rem;
+}
+section:nth-of-type(even) {
+  background-color: #f4f5ff;
+}
+section .section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* About Section */
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  align-items: center;
+}
+.about-text {
+  flex: 1 1 400px;
+}
+.about-image {
+  flex: 1 1 300px;
+  text-align: center;
+}
+.about-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Services Section */
+.services-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.service {
+  background-color: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.service:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.service h3 {
+  margin-bottom: 0.5em;
+  color: var(--color-primary-dark);
+}
+.service p {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* Timeline Section */
+.timeline {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: 2rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-accent);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  /*
+   * Timeline items are visible by default to ensure accessibility even if
+   * JavaScript fails to execute. Originally these elements were hidden
+   * (opacity: 0) and translated downward to enable a reveal animation via
+   * IntersectionObserver. However, some browsers restrict JS execution in
+   * local file contexts, causing items to remain invisible. To guarantee
+   * the timeline is always readable, the items are now visible by default.
+   * Should the script load properly, the `.visible` class will still be
+   * applied to trigger subtle fade‑in transitions.
+   */
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.timeline-year {
+  position: absolute;
+  left: -65px;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+.timeline-content {
+  background-color: var(--color-surface);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.timeline-content h3 {
+  margin-bottom: 0.3em;
+  color: var(--color-primary-dark);
+}
+.timeline-content p {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* Vision Section */
+.vision-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  align-items: center;
+}
+.vision-text {
+  flex: 1 1 350px;
+}
+.vision-image {
+  flex: 1 1 350px;
+  text-align: center;
+}
+.vision-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Works Section */
+.works-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.work-item {
+  background-color: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.work-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.work-item h3 {
+  margin-bottom: 0.5em;
+  color: var(--color-primary-dark);
+}
+.work-item p {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* Contact Section */
+.contact-container {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contact-container input,
+.contact-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.contact-container textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.contact-container button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background-color var(--transition-fast);
+}
+.contact-container button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-primary-dark);
+  color: #c7d2fe;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.citations {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+.citations a {
+  margin-right: 0.5rem;
+  color: var(--color-muted);
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 10px;
+  }
+  .timeline-year {
+    left: -50px;
+  }
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  .nav-links {
+    gap: 0.8rem;
+    font-size: 0.9rem;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+}
