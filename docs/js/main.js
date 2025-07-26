@@ -9,6 +9,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.querySelector('.navbar');
   const arrow = document.querySelector('.scroll-down-gif');
 
+  // Mobile navigation toggle: shows or hides the nav links on small screens
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinksList = document.querySelector('.nav-links');
+  if (navToggle && navLinksList) {
+    navToggle.addEventListener('click', () => {
+      // Toggle the aria-expanded attribute for accessibility
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', (!expanded).toString());
+      // Show or hide the nav menu
+      navLinksList.classList.toggle('open');
+    });
+    // Close the dropdown after a navigation link is clicked
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinksList.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   // Highlight navigation links based on scroll position
   const sectionObserver = new IntersectionObserver(
     (entries) => {

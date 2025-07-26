@@ -486,3 +486,83 @@ footer {
     font-size: 1rem;
   }
 }
+
+/*
+ * Mobile navigation toggle button
+ * Hidden on larger screens and shown on small screens to provide
+ * an accessible hamburger menu. When clicked, it toggles the
+ * visibility of the nav-links list. See main.js for the handler.
+ */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-primary-dark);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 768px) {
+  /* Layout the navigation links as a dropdown panel on small screens */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--color-surface);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    display: none;
+    z-index: 999;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  /* Display the mobile toggle button */
+  .nav-toggle {
+    display: block;
+  }
+  /* Reduce spacing between links inside the dropdown */
+  .nav-links li {
+    margin: 0.5rem 0;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Adjust heading sizes for extra small screens */
+  .hero-content h1 {
+    font-size: 1.6rem;
+  }
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+  /* Stack hero book elements vertically */
+  .hero-book {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-book .book-image,
+  .hero-book .book-text {
+    flex: 1 1 100%;
+    padding-left: 0;
+  }
+  /* Fine‑tune timeline markers and connectors on small screens */
+  .timeline::before {
+    left: 12px;
+  }
+  .timeline-year {
+    left: -45px;
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+  /* Stack service and works cards into a single column on very small screens */
+  .services-grid,
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+}
